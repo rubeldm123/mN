@@ -1,0 +1,73 @@
+Steps:
+
+
+NOTE: I reset mysql credential to 
+User:root
+Password:root
+Part1:
+1. https://www.mysql.com/downloads/
+2. Go down to MYSQL Community Edition(GPL) and click
+3. click on ———MySQL Community Server (GPL)
+4. Scroll down to ———MySQL Community Server 5.7.21
+5. Select ——macOS 10.13(x86,64-bit), DMG Archive
+6. Ignore Login/Sign UP by click on No Thanks
+
+Part2:
+1. Open download folder and click on mySQL download pkg
+2. Continue
+3.Agree
+4.Install
+5. Mac password
+6. Copy one time temporary password 
+
+>>>>>>2018-03-31T13:45:37.495638Z 1 [Note] A temporary password is generated for root@localhost: ?kKWHGq<s3m3
+
+If you lose this password, please consult the section How to Reset the Root Password in the MySQL reference manual.<<<<<<<
+
+
+Optional: save above text to desktop using terminal
+
+A)open terminal 
+B) type cd Desktop
+C) touch mysql_pass.txt
+
+Part3:
+Verification MYSql:
+
+1.click on Apple icon
+2.click on System Prefernces
+3> you should see at the button next to Java
+
+Part4:
+-Download MySQl Workbench
+>1. https://www.mysql.com/downloads/
+2. Go down to MYSQL Community Edition(GPL) and click
+3. Scroll down to ——MySQL Workbench (GPL) and click 
+4. Scroll down to ——MySQL Workbench 6.3.10——
+5. Select macOS(x86,64bit), DMG Archive —>Download
+6. No Thanks, just start my download 
+
+Part5: Connect MySQl workbench
+A) click on mySQL -workbanch in download folder 
+B)drag MYSQLWorkbench to application Folder
+C)Go to application folder and then open MYSQL 
+
+
+
+
+Part6:
+-connect MYSql with Terminal
+1. Create a .bash_profile 
+>open Terminal and do flowing 
+mds-MacBook-Pro:~ mdrubel$ pwd
+/Users/mdrubel
+mds-MacBook-Pro:~ mdrubel$ ls -al
+
+>mds-MacBook-Pro:~ mdrubel$ touch .bash_profile
+mds-MacBook-Pro:~ mdrubel$ open -t .bash_profile
+> copy this to text box ————export PATH=${PATH}:/usr/local/mysql/bin/
+
+2. Type——— mds-MacBook-Pro:~ mdrubel$ mysql -u root -p
+3. Password from sqlTemporary ——>root
+
+

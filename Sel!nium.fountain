@@ -1,0 +1,260 @@
+**1) Switch to frame, Explicit wait, Java Executor 
+2)TestNG Test case
+3) Grouping test cases 
+4.TakeScreenShotOnFailure
+
+
+**
+
+1) Switch to frame, Explicit wait, Java Executor 
+———————————————————————
+@When("^Click on Create Claim Button$")
+	public void click_on_Create_Claim_Button() throws Throwable {
+	
+                          *Switch to Frame:*
+
+	
+	   //driver.findElement(By.xpath("//*[@id='portalLogOutId']")).click(); //Sinout working
+		driver.switchTo().frame("divMainmyWiproPortalViewFrame");
+		
+	   
+	   driver.findElement(By.xpath("//*[@id=\"btnmanager\"]")).click();
+	   /*
+
+                          ** Expilicit wait**
+	   WebDriverWait w= new WebDriverWait(driver, 50);
+		WebElement el= w.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//*[@id='Button1']"))));
+		el.click();
+		
+	
+                              **Java Executor**
+	//WebElement cl= driver.findElement(By.xpath("//*[@id='portalLogOutId']"));
+		WebElement cl= driver.findElement(By.name("ctl00$ContentPlaceHolder1$btnbasket"));
+	   	 
+		((JavascriptExecutor) driver).executeScript("arguments[0].click());", cl);
+	*/
+	}
+
+
+//div[@class id=‘fkbx’]/div/input
+
+
+———————————————————————————————————
+
+**2) TestNG Test case**
+
+public class class1abc {
+	
+	@BeforeTest
+	public void BrowserOpen() {
+		System.out.println("Browser OPen successfully");
+	}
+	@AfterTest
+
+	public void Browserclose() {
+		System.out.println("Browser close successfully");
+	}
+	
+
+	@Test(priority=1)
+	public void AddVendor() {
+		System.out.println("VendorAdd  successfill");
+	}
+	@Test(priority=2)
+	public void AddProduct() {
+		System.out.println("Add Product successfill");
+	}
+	
+	@Test(priority=3)
+	public void AddCurrency() {
+		System.out.println("AddCurrency successfill");
+	}
+	
+
+}//end class
+
+////////////////////////////
+
+public class class2xyz {
+	
+	@BeforeTest
+	public void BrowserOpen() {
+		System.out.println("Browser OPen successfully");
+	}
+	@AfterTest
+	
+	public void Browserclose() {
+		System.out.println("Browser close successfully");
+	}
+	
+
+	@Test(priority=1)
+	public void DeleteVendor() {
+		System.out.println("VendorAdd  successfill");
+	}
+	@Test(priority=2)
+	public void DeleteProduct() {
+		System.out.println("Add Product successfill");
+	}
+	
+	@Test(priority=3)
+	public void DeleteCurrency() {
+		System.out.println("AddCurrency successfill");
+	}	}//end class
+
+////////////////////////////////
+
+public class class3axz {
+	
+	@BeforeTest
+	public void BrowserOpen() {
+		System.out.println("Browser OPen successfully");
+	}
+	@AfterTest
+
+	public void Browserclose() {
+		System.out.println("Browser close successfully");
+	}
+	
+
+	@Test(priority=1)
+	public void EditVendor() {
+		System.out.println("VendorAdd  successfill");
+	}
+	@Test(priority=2)
+	public void EditProduct() {
+		System.out.println("Add Product successfill");
+	}
+	
+	@Test(priority=3)
+	public void EditCurrency() {
+		System.out.println("AddCurrency successfill");
+	}}//end class
+
+///////////////////////////////////
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+
+<suite name= "Ecommerce">
+<test name="Smoke">
+
+<classes>
+
+<class name = "TestNGGrouping.class1abc"/>
+<class name = "TestNGGrouping.class2xyz"/>
+<class name = "TestNGGrouping.class3axz"/>
+
+
+</classes>
+
+
+</test>
+
+///////////////////////////////////
+==============================================================================
+**3) Grouping test cases **
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+
+<suite name= "Ecommerce">
+<test name="SanityTests">
+<groups>
+<run>
+<include name="Regression"/>
+
+</run>
+
+</groups>
+<classes>
+
+<class name = "TestNGGrouping.class1abc"/>
+<class name = "TestNGGrouping.class2xyz"/>
+<class name = "TestNGGrouping.class3axz"/>
+
+</classes>
+</test>
+
+</suite>
+
+=========================
+Run Multiple Groups——————
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+
+<suite name= "Ecommerce">
+<test name="SanityTests">
+<groups>
+<run>
+<include name="Regression"/>
+<include name="sanity"/>
+</run>
+
+</groups>
+<classes>
+
+<class name = "TestNGGrouping.class1abc"/>
+<class name = "TestNGGrouping.class2xyz"/>
+<class name = "TestNGGrouping.class3axz"/>
+
+
+</classes>
+
+
+—————————————
+public class class3axz {
+	
+	@BeforeMethod
+	public void BrowserOpen() {
+		System.out.println("C3:Browser OPen successfully");
+	}
+	@AfterMethod
+
+	public void Browserclose() {
+		System.out.println("C3:Browser close successfully");
+	}
+	
+
+	@Test(groups="Regression",priority=1)
+	public void EditVendor() {
+		System.out.println("C3:VendorAdd  successfill");
+	}
+	@Test(groups="Regression",priority=2)
+	public void EditProduct() {
+		System.out.println("C3:Add Product successfill");
+	}
+	
+	@Test(groups="sanity",priority=3)
+	public void EditCurrency() {
+		System.out.println("C3:AddCurrency successfill");
+	}
+	
+	@Test(groups= {"sanity"})
+public void search() {
+		System.out.println("C3: Search successfully");
+	}
+	
+	@Test(groups= {"Regression"})
+	public void Adsearch() {
+			System.out.println("C3: AdSearch successfully");
+		}
+	
+	@Test(groups= {"Regression"})
+	public void billPayment() {
+			System.out.println("C3: BillPayment successfully");
+		}}//end class
+/////////////////////////////////////////
+
+=========
+
+4.TakeScreenShotOnFailure
+@AfterMethod
+	public void takeScreenShotOnFailure(ITestResult testResult) throws IOException {
+		if (testResult.getStatus() == ITestResult.FAILURE) {
+			System.out.println(testResult.getStatus());
+			File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+			Files.copy(scrFile, new File("/Users/mdrubel/eclipse-workspace/MYLecture/FailTestResult/errorScreenshots" + testResult.getName() + "-" 
+					+ Arrays.toString(testResult.getParameters()) +  ".jpg"));
+	   }        
+

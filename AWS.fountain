@@ -1,0 +1,109 @@
+**AWS Global Infrastructure
+**
+
+1) Regions
+2) Availability zones
+3) Edge locations
+
+1) Regions
+> Regions are geographic area that host two or more availability zones 
+>we can upload our application in multiple regions
+>not replicate data in different regions
+
+
+2) Availability zones:
+> It is acollection of Data centers within a regions
+
+3)Edge location:
+> it’s locate in the populated area 
+
+
+==============
+									Amazon Virtual Private Cloud(VPC):
+
+>A private, virtual network in the AWS Cloud
+.Uses same concepts as on premise networking
+
+>Allows complete control of network configuration
+.Ability to isolate and expose resources inside VPC
+
+>Offers several layers of security controls
+.Ability to allow and deny specific internet and internal traffic
+
+>Other AWS services deploy into VPC
+.Services inherent security built into network
+
+=========
+									Was Security:
+
+>One of the highest priorities
+>Built-in firewalls
+>Accessibility
+
+Create a Security group in EC2:
+a) click on EC2
+b)From Navagation pan on the left side click on Security Groups
+c)clcik Create Security Group
+d)Security group name: WebServer
+Description:WebServerSecurityGroup
+VPC: vpc-1cf95464|Demo VPC
+
+e) click add Rule
+f) create 
+
+============================
+									Compute Services:
+
+Not sure
+
+==================
+					AmazonEC2 Instance
+
+EC2?= Elastic Compute Cloud
+Elastic: Configuration 
+Compute: Application Server, Web Server, Database Server, Game Server, Mail Server, Media Server, Catalog Server, File Server, Computing Server, Proxy Server, etc
+
+Cloud: All this server host in the cloud 
+
+>Pay as you go
+>Broad selection of hardware and software
+>Global hosting
+
+
+==============================
+						AWS Lambda
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
