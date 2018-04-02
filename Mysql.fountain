@@ -1,3 +1,9 @@
+
+
+1. Download and install MYSQL to MAC
+2.Create a databases, Table and insert data in the table 
+3.Add Multiple columns, int and Data Types
+
 Steps:
 
 
@@ -69,5 +75,46 @@ mds-MacBook-Pro:~ mdrubel$ open -t .bash_profile
 
 2. Type——— mds-MacBook-Pro:~ mdrubel$ mysql -u root -p
 3. Password from sqlTemporary ——>root
+
+=========================================================================================
+				2.Create a databases, Table and insert data in the table 
+
+1. Create a Databases
+A) —>create databases tutorial1
+v::-Show databases ——————>to display database
+
+2.create Table under tutorial1 databases
+—>use tutorial1
+—>create table users (username text)
+v::-desc users———————> to view table
+
+3. Add data in the Table
+—>insert into users(username) valuse(“BOB”)
+—>insert into users(username) values(“vicky”)
+
+V::- select * from users
+
+
+=================================================
+
+			3.Add Multiple columns, int and Data Types
+
+1. Remove previous table users
+—>drop table users
+2. Recreate table users
+—>create table users (id int , username text);
+
+v::—>desc users
+
+3. Add multiple data in the user table 
+—> insert users(id, username) values(1, “Bob”);
+—>inner users(id, username) values(2, “vicky”);
+
+V::—>select * from users;
+
+—————————End of Lecture7———————
+
+
+
 
 
