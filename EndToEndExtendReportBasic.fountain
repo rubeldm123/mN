@@ -1,0 +1,297 @@
+
+
+
+1. Pom.xml
+2. TestNG.xml
+3.Browser class
+4. All Test Casses 
+
+
+
+
+
+1. Pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>talentech</groupId>
+  <artifactId>TestNGProject</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+ <build>
+  <plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.20.1</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+
+
+
+
+		</plugins>
+
+	</build>
+
+  
+  
+  
+  
+  
+  
+  
+  
+   <dependencies>
+  <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+<dependency>
+    <groupId>org.testng</groupId>
+    <artifactId>testng</artifactId>
+    <version>6.10</version>
+    <scope>test</scope>
+</dependency>
+
+<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.8.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.uncommons/reportng -->
+<dependency>
+    <groupId>org.uncommons</groupId>
+    <artifactId>reportng</artifactId>
+    <version>1.1.4</version>
+    <scope>test</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.google.inject/guice -->
+<dependency>
+    <groupId>com.google.inject</groupId>
+    <artifactId>guice</artifactId>
+    <version>3.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.relevantcodes/extentreports -->
+<dependency>
+    <groupId>com.relevantcodes</groupId>
+    <artifactId>extentreports</artifactId>
+    <version>2.41.0</version>
+</dependency>
+
+
+
+
+   </dependencies>
+   
+   <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>2.19.1</version>
+      </plugin>
+    </plugins>
+  </reporting>
+
+</project>
+
+========================================================================
+2. TestNG.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	
+	<listeners>
+  <listener class-name="org.uncommons.reportng.HTMLReporter" />
+  <listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+</listeners>
+	
+
+  <test  name="Test">
+    <classes>
+      <class name="TestNGStudy.OrangeHrmlogin_TC1"/>
+      <class name="TestNGStudy.OrangeHrmlogin_TC2"/>
+      <class name="TestNGStudy.OrangeHrmlogin_TC3"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+=======================================================================================
+3.Browser class
+package base;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeMethod;
+
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+
+public class CreateDriver {
+	
+	//public  WebDriver driver;
+	public ChromeDriver driver;
+	public ExtentReports er;
+	public ExtentTest et;
+	
+	 @BeforeMethod
+	public  void opneBrowser() {
+		 er= new ExtentReports("./Report/report.html", true);
+		 er.addSystemInfo("AutorName", "MD RUBEL");
+		System.setProperty("webdriver.chrome.driver", "/Users/mdrubel/Desktop/chromedriver" );
+		driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://opensource.demo.orangehrmlive.com/");
+		
+	}
+	 
+	 @AfterMethod
+	 public void closeBrowser() {
+		 
+		 er.flush();
+		 driver.quit();
+		 
+	 }
+	 
+	 @AfterSuite
+	 public void generateReport() {
+		 
+		 System.out.println("This is from Report methods");
+	 }
+	
+
+}//end class
+
+=================================================
+4. All Test Casses 
+
+TC1:
+
+package TestNGStudy;
+
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import com.relevantcodes.extentreports.LogStatus;
+
+import base.CreateDriver;
+
+import org.testng.annotations.Test;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+
+public class OrangeHrmlogin_TC1 extends CreateDriver{
+	
+	
+	
+	 @Test
+	public  void orangehrmlogin() {
+		et=er.startTest("TC1: Verify Login Functionality");
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.findElement(By.xpath("//input[@name='txtUsername']")).sendKeys("Admin");
+		driver.findElement(By.xpath("//input[@name='txtPassword']")).sendKeys("admin");
+		driver.findElement(By.xpath("//input[@name='Submit']")).click();
+		et.log(LogStatus.PASS, "Test case is Pass");
+		er.endTest(et);
+		System.out.println("This is test case from tc 1");
+		
+	}		
+
+}//end class
+
+>>>>>>>>>
+TC2:
+package TestNGStudy;
+
+import org.testng.annotations.Test;
+
+import base.CreateDriver;
+
+import org.testng.annotations.Test;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+public class OrangeHrmlogin_TC2 extends CreateDriver{
+	
+	
+	
+	 @Test
+	public  void orangehrmlogin() {
+		
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.findElement(By.xpath("//input[@name='txtUsername']")).sendKeys("Admin");
+		driver.findElement(By.xpath("//input[@name='txtPassword']")).sendKeys("admin");
+		driver.findElement(By.xpath("//input[@name='Submit']")).click();
+		System.out.println("This is test case from tc 2");
+		
+	}		
+	
+}
+
+->>>>>>>>>>>>>>>>>>>>>>>
+TC3:
+
+package TestNGStudy;
+
+import org.testng.annotations.Test;
+
+import base.CreateDriver;
+
+import org.testng.annotations.Test;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+
+	public class OrangeHrmlogin_TC3 extends CreateDriver{
+		
+		
+		
+		 @Test
+		public  void orangehrmlogin() {
+			
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.findElement(By.xpath("//input[@name='txtUsername']")).sendKeys("Admin");
+			driver.findElement(By.xpath("//input[@name='txtPassword']")).sendKeys("admin");
+			driver.findElement(By.xpath("//input[@name='Submit']")).click();
+			System.out.println("This is test case from tc 3");
+			
+		}	
+
+}//end class
+
+
+==============================
+
+
+
